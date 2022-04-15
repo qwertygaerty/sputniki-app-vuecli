@@ -2,7 +2,7 @@
 
   <section class="gallery-link">
     <router-link to="/gallery" @click="hideGalleryLink()" v-if="hideLinks">Галерея</router-link>
-    <router-link to="/weather" @click="hideGalleryLink()" v-if="!hideLinks">Погода</router-link>
+    <router-link to="/weather" @click="hideGalleryLink()" v-if="!hideLinks" >Погода</router-link>
   </section>
 
   <router-view></router-view>
@@ -22,6 +22,12 @@ export default {
   methods: {
     hideGalleryLink() {
       this.hideLinks  = !this.hideLinks
+    }
+  },
+
+  mounted() {
+    if ( this.$router.currentRoute.value.path === "/gallery") {
+      this.hideLinks  = false
     }
   }
 
